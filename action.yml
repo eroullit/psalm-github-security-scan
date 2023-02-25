@@ -18,5 +18,8 @@ inputs:
     description: 'File for Psalm’s output'
 
 runs:
-  using: 'docker'
-  image: 'docker://ghcr.io/psalm/psalm-security-scan'
+  using: 'composite'
+  steps:
+    - uses: ./.github/workflows/run.yml
+      with:
+        - report_file: ${{ inputs.report_file }}
